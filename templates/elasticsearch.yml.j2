@@ -1,0 +1,15 @@
+# act as "search load balancer", fetching data, aggregating results, etc.
+node.master: false
+node.data: false
+node.ingest: false
+
+cluster.name: "{{ es_cluster_name }}"
+network.host: "{{ es_listen_addr }}"
+network.bind_host: "{{ es_listen_addr }}"
+network.publish_host: "{{ ansible_local.tinc.vpn_ip }}"
+
+http.port: "{{ es_api_port }}"
+transport.profiles.default.port: {{ es_node_port }}
+
+# minimum_master_nodes need to be explicitly set when bound on a public IP
+discovery.zen.ping.unicast.hosts: {{ es_services.json | map(attribute="ServiceAddress") | reject('equalto', ansible_local.tinc.vpn_ip) | list | to_json }}
