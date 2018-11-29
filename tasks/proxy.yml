@@ -20,3 +20,16 @@
     owner: root
     group: www-data
     mode: 0640
+
+- name: 'Enable ports for: {{ es_lb_cont_name }}'
+  iptables:
+    comment: '{{ es_lb_cont_name }}'
+    jump: ACCEPT
+    action: insert
+    chain: DOCKER-USER
+    source: '0.0.0.0/0'
+    protocol: 'tcp'
+    destination_port: '{{ item }}'
+  with_items: [ 80, 443 ]
+  notify:
+    - Save iptables rules
