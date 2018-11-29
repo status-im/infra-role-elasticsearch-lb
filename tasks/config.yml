@@ -6,9 +6,10 @@
     state: present
     reload: true
 
-- name: Fix conf folder permissions
+- name: 'Create folders for: {{ es_lb_cont_name }}'
   file:
     path: '{{ es_lb_docker_dir }}/conf'
+    state: directory
     group: 1000
     mode: 0755
 
