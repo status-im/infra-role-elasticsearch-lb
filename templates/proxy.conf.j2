@@ -1,11 +1,11 @@
 server {
-  listen 80
-  listen 443 ssl
+  listen 80;
+  listen 443 ssl;
   
-  server_name {{ es_lb_domain | required }}
+  server_name {{ es_lb_domain | mandatory }};
   
-  ssl_certificate     /certs/origin.crt
-  ssl_certificate_key /certs/origin.key
+  ssl_certificate     /certs/origin.crt;
+  ssl_certificate_key /certs/origin.key;
   
   location / {
     proxy_set_header Host $host;
