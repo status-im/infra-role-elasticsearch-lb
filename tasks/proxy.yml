@@ -1,0 +1,22 @@
+---
+- name: 'Template proxy config: {{ es_lb_cont_name }}'
+  template:
+    src: proxy.conf.j2
+    dest: /etc/nginx/sites-available/{{ es_lb_cont_name }}.conf
+  notify: reload nginx
+
+- name: 'Symlink proxy config: {{ es_lb_cont_name }}'
+  file:
+    src: /etc/nginx/sites-available/{{ es_lb_cont_name }}.conf
+    dest: /etc/nginx/sites-enabled/{{ es_lb_cont_name }}.conf
+    state: link
+  notify: reload nginx
+
+- name: Generate basic auth secrets
+  htpasswd:
+    path: '{{ es_lb_passwd_path }}'
+    name: '{{ es_lb_username | mandatory }}'
+    password: '{{ es_lb_password | mandatory }}'
+    owner: root
+    group: www-data
+    mode: 0640

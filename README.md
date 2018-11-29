@@ -4,6 +4,16 @@ This role configures a single [ElasticSearch](https://www.elastic.co/guide/en/el
 
 # Configuration
 
+This is optional, but you can enable public access to the Load Balancer:
+```yaml
+es_lb_public: true
+es_lb_domain: 'es.example.com'
+es_lb_username: 'search-user'
+es_lb_password: 'very-secret-password'
+```
+
+# Details
+
 The main difference is the fact that most normal ElasticSearch functionalities are disabled on this node via the following configuration in [`templates/elasticsearch.tml.j2`](./templates/elasticsearch.tml.j2):
 ```
 node.master: false

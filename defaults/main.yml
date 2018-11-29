@@ -14,6 +14,12 @@ es_lb_max_map_count: 262144
 es_lb_jvm_min_heap: 2g
 es_lb_jvm_max_heap: 2g
 
+es_lb_public: false
+es_lb_domain: ~
+es_lb_username: ~
+es_lb_password: ~
+es_lb_passwd_path: '/etc/nginx/passwdfile'
+
 # generic container options
 cont_state: started
 cont_recreate: false
