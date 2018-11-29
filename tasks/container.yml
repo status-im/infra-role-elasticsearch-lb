@@ -1,0 +1,15 @@
+---
+- name: Start container
+  docker_container:
+    name: '{{ es_lb_cont_name }}'
+    image: '{{ es_lb_image }}'
+    pull: true
+    restart_policy: always
+    state: '{{ cont_state }}'
+    recreate: '{{ cont_recreate }}'
+    restart: '{{ es_lb_config.changed | default(cont_restart) }}'
+    ports:
+      - '0.0.0.0:{{ es_lb_api_port }}:{{ es_lb_api_port }}'
+      - '0.0.0.0:{{ es_lb_node_port }}:{{ es_lb_node_port }}'
+    volumes:
+      - '{{ es_lb_docker_dir }}/conf/:/usr/share/elasticsearch/config/'
