@@ -10,7 +10,7 @@
   file:
     path: '{{ es_lb_docker_dir }}/conf'
     state: directory
-    user: 1000
+    owner: 1000
     group: adm
     mode: 0775
 
