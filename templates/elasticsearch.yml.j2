@@ -3,6 +3,7 @@ node.master: false
 node.data: false
 node.ingest: false
 
+node.name: "{{ hostname }}"
 cluster.name: "{{ es_lb_cluster_name | mandatory }}"
 network.host: "{{ es_lb_listen_addr }}"
 network.bind_host: "{{ es_lb_listen_addr }}"
