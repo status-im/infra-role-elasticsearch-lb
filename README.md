@@ -6,6 +6,7 @@ This role configures a single [ElasticSearch](https://www.elastic.co/guide/en/el
 
 The only mandatory setting is what host to connect to:
 ```yaml
+es_lb_cluster_name: example-es-cluster
 es_lb_master_nodes:
   - node-01.es.example.tinc
   - node-02.es.example.tinc
