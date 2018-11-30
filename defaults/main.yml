@@ -1,4 +1,9 @@
 ---
+# Mandatory variables
+es_lb_master_nodes: ~
+es_lb_master_port: 9300
+es_lb_master_nodes_and_ports: '{{ es_master_nodes | map("regex_replace", "(.*)", "\1:"+es_master_port|string) | list }}'
+
 es_lb_image: 'docker.elastic.co/elasticsearch/elasticsearch-oss:6.5.1'
 es_lb_api_port: 9200
 es_lb_node_port: 9300
@@ -9,8 +14,6 @@ es_lb_docker_dir: '/docker/{{ es_lb_cont_name }}'
 es_lb_data_center: do-ams3
 es_lb_cluster_name: 'status-logs-search'
 es_lb_listen_addr: '0.0.0.0'
-es_lb_unicast_host: ~
-es_lb_unicast_port: 9200
 
 es_lb_max_map_count: 262144
 es_lb_jvm_min_heap: 2g

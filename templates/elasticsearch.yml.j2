@@ -11,5 +11,4 @@ network.publish_host: "{{ ansible_local.tinc.vpn_ip }}"
 http.port: "{{ es_lb_api_port }}"
 transport.profiles.default.port: {{ es_lb_node_port }}
 
-# minimum_master_nodes need to be explicitly set when bound on a public IP
-discovery.zen.ping.unicast.hosts: {{ es_lb_unicast_host | mandatory }}:{{ es_lb_unicast_port }}
+discovery.zen.ping.unicast.hosts: {{ es_lb_master_nodes_and_ports | to_yaml }}
