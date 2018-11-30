@@ -1,8 +1,6 @@
 ---
 - name: reload nginx
-  block:
-    - name: Check nginx config
-      command: nginx -t
+  command: nginx -t
 
-    - name: Reload nginx service
-      service: name=nginx state=reloaded
+- name: reload nginx
+  service: name=nginx state=reloaded
