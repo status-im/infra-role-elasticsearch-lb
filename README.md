@@ -4,6 +4,12 @@ This role configures a single [ElasticSearch](https://www.elastic.co/guide/en/el
 
 # Configuration
 
+The only mandatory setting is what host to connect to:
+```yaml
+es_lb_unicast_host: 'es-cluster.example.com'
+es_lb_unicast_port: 9200
+```
+
 This is optional, but you can enable public access to the Load Balancer:
 ```yaml
 es_lb_public: true

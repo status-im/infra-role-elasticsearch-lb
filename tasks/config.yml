@@ -11,17 +11,12 @@
     path: '{{ es_lb_docker_dir }}/conf'
     state: directory
     group: 1000
-    mode: 0755
+    mode: 0775
 
 - name: Create directory for config files
   file:
     path: '{{ es_lb_docker_dir }}/conf/ingest-geoip'
     state: directory
-
-- name: Fetch available elasticsearch nodes
-  uri:
-    url: 'http://localhost:8500/v1/catalog/service/elasticsearch?dc={{ es_lb_data_center }}'
-  register: es_lb_services
 
 - name: Create config files
   template:

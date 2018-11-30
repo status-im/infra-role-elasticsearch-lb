@@ -12,4 +12,5 @@ http.port: "{{ es_lb_api_port }}"
 transport.profiles.default.port: {{ es_lb_node_port }}
 
 # minimum_master_nodes need to be explicitly set when bound on a public IP
-discovery.zen.ping.unicast.hosts: {{ es_lb_services.json | map(attribute="ServiceAddress") | reject('equalto', ansible_local.tinc.vpn_ip) | list | to_json }}
+discovery.zen.ping.unicast.hosts: {{ es_lb_unicast_host }}:{{ es_lb_unicast_port }}
+
