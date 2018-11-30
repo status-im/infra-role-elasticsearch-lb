@@ -1,5 +1,5 @@
 ---
-- name: Start container
+- name: 'Start container: {{ es_lb_cont_name }}'
   docker_container:
     name: '{{ es_lb_cont_name }}'
     image: '{{ es_lb_image }}'
