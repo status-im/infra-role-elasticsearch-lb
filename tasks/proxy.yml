@@ -1,7 +1,7 @@
 ---
 - name: 'Template proxy config: {{ es_lb_cont_name }}'
   template:
-    src: proxy.conf.j2
+    src: nginx/proxy.conf.j2
     dest: /etc/nginx/sites-available/{{ es_lb_cont_name }}.conf
   notify: reload nginx
 

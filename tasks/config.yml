@@ -25,4 +25,4 @@
     dest: '{{ es_lb_docker_dir }}/conf/{{ item | basename | replace(".j2", "") }}'
   register: es_lb_config
   with_fileglob:
-    - templates/*
+    - templates/elasticsearch/*
