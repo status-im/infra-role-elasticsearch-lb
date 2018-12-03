@@ -1,0 +1,26 @@
+server {
+  listen 80;
+  listen 443 ssl;
+  
+  server_name {{ es_lb_domain | mandatory }};
+  
+  ssl_certificate     /certs/origin.crt;
+  ssl_certificate_key /certs/origin.key;
+  
+  location ~ ^.*/_search$ {
+    {% include "cors-setup.conf.j2" %}
+
+    proxy_set_header Host $host;
+    proxy_pass http://127.0.0.1:{{ es_lb_api_port }};
+  }
+
+  location / {
+    proxy_set_header Host $host;
+    proxy_pass http://127.0.0.1:{{ es_lb_api_port }};
+
+    limit_except GET {
+      auth_basic "Search Authentication";
+      auth_basic_user_file {{ es_lb_passwd_path }};
+    }
+  }
+}
