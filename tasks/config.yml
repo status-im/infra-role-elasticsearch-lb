@@ -10,19 +10,23 @@
   file:
     path: '{{ es_lb_docker_dir }}/conf'
     state: directory
-    owner: 1000
-    group: adm
+    owner: dockremap
+    group: docker
     mode: 0775
 
 - name: Create directory for config files
   file:
     path: '{{ es_lb_docker_dir }}/conf/ingest-geoip'
     state: directory
+    owner: dockremap
+    group: docker
 
 - name: Create config files
   template:
     src: '{{ item }}'
     dest: '{{ es_lb_docker_dir }}/conf/{{ item | basename | replace(".j2", "") }}'
+    owner: dockremap
+    group: docker
   register: es_lb_config
   with_fileglob:
     - templates/elasticsearch/*
