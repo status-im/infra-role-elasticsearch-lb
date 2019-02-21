@@ -12,7 +12,7 @@
     state: directory
     owner: dockremap
     group: docker
-    mode: 0775
+    recurse: true
 
 - name: Create directory for config files
   file:
