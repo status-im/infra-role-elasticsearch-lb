@@ -10,7 +10,7 @@
   file:
     path: '{{ es_lb_docker_dir }}/conf'
     state: directory
-    owner: dockremap
+    owner: '{{ es_lb_host_uid }}'
     group: docker
     recurse: true
 
@@ -18,14 +18,14 @@
   file:
     path: '{{ es_lb_docker_dir }}/conf/ingest-geoip'
     state: directory
-    owner: dockremap
+    owner: '{{ es_lb_host_uid }}'
     group: docker
 
 - name: Create config files
   template:
     src: '{{ item }}'
     dest: '{{ es_lb_docker_dir }}/conf/{{ item | basename | replace(".j2", "") }}'
-    owner: dockremap
+    owner: '{{ es_lb_host_uid }}'
     group: docker
   register: es_lb_config
   with_fileglob:
