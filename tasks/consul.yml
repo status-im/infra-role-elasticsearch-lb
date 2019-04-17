@@ -5,7 +5,7 @@
     consul_config_name: '{{ es_lb_cont_name }}'
     consul_services:
       - name: '{{ es_lb_cont_name }}'
-        tags: ['logging']
+        tags: '{{ es_lb_consul_tags }}'
         # we advertise the port with basic auth
         port: '{{ es_lb_api_port }}'
         address: '{{ ansible_local.tinc.vpn_ip }}'
