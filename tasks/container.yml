@@ -8,6 +8,8 @@
     state: '{{ cont_state }}'
     recreate: '{{ cont_recreate }}'
     restart: '{{ es_lb_config.changed | default(cont_restart) }}'
+    env:
+      ES_PATH_CONF: '/usr/share/elasticsearch/config'
     ports:
       - '0.0.0.0:{{ es_lb_api_port }}:{{ es_lb_api_port }}'
       - '0.0.0.0:{{ es_lb_node_port }}:{{ es_lb_node_port }}'
