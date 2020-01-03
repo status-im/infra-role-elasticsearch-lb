@@ -12,6 +12,10 @@
     state: link
   notify: reload nginx
 
+- name: Install required python3-passlib
+  apt:
+    name: python3-passlib
+
 - name: Generate basic auth secrets
   htpasswd:
     path: '{{ es_lb_passwd_path }}'
