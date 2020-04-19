@@ -9,8 +9,12 @@
         # we advertise the port with basic auth
         port: '{{ es_lb_api_port }}'
         address: '{{ ansible_local.tinc.vpn_ip }}'
+        meta:
+            fleet: '{{ env }}.{{ stage }}'
+            cluster_port: '{{ es_lb_node_port | string }}'
+            cluster_name: '{{ es_lb_cluster_name }}'
         checks:
           - id: '{{ es_lb_cont_name }}-health'
-            name: ElasticSearch Healthcheck
+            name: ElasticSearch LB Healthcheck
             type: http
             http: 'http://localhost:{{ es_lb_api_port }}/?pretty'
