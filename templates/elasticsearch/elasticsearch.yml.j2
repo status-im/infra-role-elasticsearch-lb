@@ -1,9 +1,7 @@
-# act as "search load balancer", fetching data, aggregating results, etc.
-node.master: false
-node.data: false
-node.ingest: false
-
 node.name: "{{ hostname }}"
+
+# act as "search load balancer", fetching data, aggregating results, etc.
+node.roles: [ ]
 
 network.host: "{{ es_lb_listen_addr }}"
 network.bind_host: "{{ es_lb_listen_addr }}"
