@@ -33,7 +33,7 @@
     chain: DOCKER-USER
     source: '0.0.0.0/0'
     protocol: 'tcp'
-    destination_port: '{{ item }}'
+    destination_port: '{{ item | string }}'
   with_items: [ 80, 443 ]
   notify:
     - Save iptables rules
