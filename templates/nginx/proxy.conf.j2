@@ -6,6 +6,11 @@ server {
   
   ssl_certificate     /certs/origin.crt;
   ssl_certificate_key /certs/origin.key;
+
+  # No need to show cluster info
+  location = / {
+    return 418;
+  }
   
   location ~ ^.*/_search$ {
     {% include "cors.conf.j2" %}
