@@ -8,9 +8,9 @@ The only mandatory setting is what host to connect to:
 ```yaml
 es_lb_cluster_name: example-es-cluster
 es_lb_master_nodes:
-  - { name: node-01.es.example.tinc, addr: 1.2.3.4, port: 9300 }
-  - { name: node-02.es.example.tinc, addr: 2.3.4.5, port: 9300 }
-  - { name: node-03.es.example.tinc, addr: 3.4.5.6, port: 9300 }
+  - { name: node-01.es.example.vpn, addr: 1.2.3.4, port: 9300 }
+  - { name: node-02.es.example.vpn, addr: 2.3.4.5, port: 9300 }
+  - { name: node-03.es.example.vpn, addr: 3.4.5.6, port: 9300 }
 ```
 
 This is optional, but you can enable public access to the Load Balancer:

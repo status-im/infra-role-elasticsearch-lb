@@ -8,7 +8,7 @@
         tags: '{{ es_lb_consul_tags }}'
         # we advertise the port with basic auth
         port: '{{ es_lb_api_port }}'
-        address: '{{ ansible_local.tinc.vpn_ip }}'
+        address: '{{ ansible_local.wireguard.vpn_ip }}'
         meta:
             fleet: '{{ env }}.{{ stage }}'
             cluster_port: '{{ es_lb_node_port | string }}'
