@@ -2,5 +2,3 @@
 - include_tasks: config.yml
 - include_tasks: container.yml
 - include_tasks: consul.yml
-- include_tasks: proxy.yml
-  when: es_lb_public

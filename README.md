@@ -13,14 +13,6 @@ es_lb_master_nodes:
   - { name: node-03.es.example.vpn, addr: 3.4.5.6, port: 9300 }
 ```
 
-This is optional, but you can enable public access to the Load Balancer:
-```yaml
-es_lb_public: true
-es_lb_domain: 'es.example.com'
-es_lb_username: 'search-user'
-es_lb_password: 'very-secret-password'
-```
-
 # Details
 
 The main difference is the fact that most normal ElasticSearch functionalities are disabled on this node via the following configuration in [`templates/elasticsearch.tml.j2`](./templates/elasticsearch.tml.j2):
