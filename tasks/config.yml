@@ -8,7 +8,7 @@
 
 - name: 'Create folders for: {{ es_lb_cont_name }}'
   file:
-    path: '{{ es_lb_docker_dir }}/conf'
+    path: '{{ es_lb_cont_vol }}/conf'
     state: directory
     owner: '{{ es_lb_host_uid }}'
     group: docker
@@ -16,7 +16,7 @@
 
 - name: Create directory for config files
   file:
-    path: '{{ es_lb_docker_dir }}/conf/ingest-geoip'
+    path: '{{ es_lb_cont_vol }}/conf/ingest-geoip'
     state: directory
     owner: '{{ es_lb_host_uid }}'
     group: docker
@@ -24,9 +24,9 @@
 - name: Create config files
   template:
     src: '{{ item }}'
-    dest: '{{ es_lb_docker_dir }}/conf/{{ item | basename | replace(".j2", "") }}'
+    dest: '{{ es_lb_cont_vol }}/conf/{{ item | basename | replace(".j2", "") }}'
     owner: '{{ es_lb_host_uid }}'
     group: docker
   register: es_lb_config
   with_fileglob:
-    - templates/elasticsearch/*
+    - templates/config/*

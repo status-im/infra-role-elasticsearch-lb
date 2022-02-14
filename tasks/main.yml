@@ -1,4 +1,4 @@
 ---
 - include_tasks: config.yml
-- include_tasks: container.yml
+- include_tasks: docker.yml
 - include_tasks: consul.yml

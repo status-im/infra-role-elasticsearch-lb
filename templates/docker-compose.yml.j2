@@ -1,0 +1,18 @@
+---
+version: '3.7'
+networks:
+  default:
+    name: '{{ es_lb_docker_network_name }}'
+
+services:
+  node:
+    container_name: '{{ es_lb_cont_name }}'
+    image: '{{ es_lb_cont_image }}'
+    restart: always
+    environment:
+      ES_PATH_CONF: '/usr/share/elasticsearch/config'
+    ports:
+      - '0.0.0.0:{{ es_lb_api_port }}:{{ es_lb_api_port }}'
+      - '0.0.0.0:{{ es_lb_node_port }}:{{ es_lb_node_port }}'
+    volumes:
+      - '{{ es_lb_cont_vol }}/conf:/usr/share/elasticsearch/config'
