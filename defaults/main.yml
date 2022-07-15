@@ -6,10 +6,6 @@ es_lb_compose_path: '{{ es_lb_service_path }}/docker-compose.yml'
 # Mandatory variables
 es_lb_cluster_name: ~
 es_lb_master_nodes: ~
-es_lb_master_nodes_and_ports: |
-  {{ es_lb_master_nodes | mandatory | json_query("[].join('', [addr,':',to_string(port)])") }}
-es_lb_master_nodes_names: |
-  {{ es_lb_master_nodes | mandatory | json_query("[].name") }}
 
 # Docker
 es_lb_docker_network_name: '{{ es_lb_service_name }}'

@@ -12,5 +12,7 @@ transport.profiles.default.port: {{ es_lb_node_port }}
 
 # Cluster
 cluster.name: "{{ es_lb_cluster_name | mandatory }}"
-cluster.initial_master_nodes: ['{{ es_lb_master_nodes_names | first | trim | mandatory }}']
-discovery.seed_hosts: {{ es_lb_master_nodes_and_ports | to_yaml | trim | mandatory }}
+discovery.seed_hosts:
+{% for node in es_lb_master_nodes %}
+  - {{ node.addr | mandatory }}:{{ node.port | mandatory }} # {{ node.name | mandatory }}
+{% endfor %}
