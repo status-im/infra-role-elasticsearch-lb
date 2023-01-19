@@ -12,7 +12,7 @@ es_lb_docker_network_name: '{{ es_lb_service_name }}'
 # Node
 es_lb_cont_name: '{{ es_lb_service_name }}-lb'
 es_lb_cont_vol: '{{ es_lb_service_path }}/lb'
-es_lb_cont_tag: '7.17.7'
+es_lb_cont_tag: '7.17.8'
 es_lb_cont_image: 'elasticsearch:{{ es_lb_cont_tag }}'
 es_lb_cont_uid: 1000
 es_lb_host_uid: '{{ 100000 + es_lb_cont_uid | int }}'
