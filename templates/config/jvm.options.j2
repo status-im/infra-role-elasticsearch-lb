@@ -18,9 +18,9 @@
 
 # Xms represents the initial size of total heap space
 # Xmx represents the maximum size of total heap space
-{% if not es_jvm_heap_auto %}
--Xms{{ es_jvm_min_heap | mandatory }}
--Xmx{{ es_jvm_max_heap | mandatory }}
+{% if not es_lb_jvm_heap_auto %}
+-Xms{{ es_lb_jvm_min_heap | mandatory }}
+-Xmx{{ es_lb_jvm_max_heap | mandatory }}
 {% else %}
 #-Xms2g
 #-Xmx2g
@@ -38,7 +38,7 @@
 ################################################################
 
 ## GC configuration
-{% if not es_jvm_g1gc_enabled %}
+{% if not es_lb_jvm_g1gc_enabled %}
 8-13:-XX:+UseConcMarkSweepGC
 8-13:-XX:CMSInitiatingOccupancyFraction=75
 8-13:-XX:+UseCMSInitiatingOccupancyOnly
@@ -52,7 +52,7 @@
 # NOTE: G1 GC is only supported on JDK version 10 or later
 # to use G1GC, uncomment the next two lines and update the version on the
 # following three lines to your version of the JDK
-{% if es_jvm_g1gc_enabled %}
+{% if es_lb_jvm_g1gc_enabled %}
 10-13:-XX:-UseConcMarkSweepGC
 10-13:-XX:-UseCMSInitiatingOccupancyOnly
 {% else %}

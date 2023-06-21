@@ -29,8 +29,8 @@ es_lb_data_center: do-ams3
 es_lb_listen_addr: '0.0.0.0'
 
 es_lb_max_map_count: 262144
-es_jvm_g1gc_enabled: false
-es_jvm_heap_auto: true
+es_lb_jvm_g1gc_enabled: false
+es_lb_jvm_heap_auto: true
 #es_lb_jvm_min_heap: 2g
 #es_lb_jvm_max_heap: 2g
 
