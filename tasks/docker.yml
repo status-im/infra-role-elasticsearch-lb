@@ -1,11 +1,11 @@
 ---
 - name: 'Create compose file'
   template:
-    src: 'docker-compose.yml.j2'
-    dest: '{{ es_lb_compose_path }}'
-    owner: dockremap
-    group: docker
-    mode: 0644
+    src:   'docker-compose.yml.j2'
+    dest:  '{{ es_lb_compose_path }}'
+    owner: 'dockremap'
+    group: 'docker'
+    mode:  '0o644'
 
 - name: 'Create containers'
   community.docker.docker_compose_v2:

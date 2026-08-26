@@ -1,32 +1,35 @@
 ---
 - name: Adjust vm.max_map_count
   sysctl:
-    name: vm.max_map_count
-    value: '{{ es_lb_max_map_count | string }}'
-    state: present
+    name:   'vm.max_map_count'
+    value:  '{{ es_lb_max_map_count | string }}'
+    state:  'present'
     reload: true
 
 - name: 'Create folders for: {{ es_lb_cont_name }}'
   file:
-    path: '{{ es_lb_host_config_path }}'
-    state: directory
-    owner: '{{ es_lb_host_uid }}'
-    group: docker
+    path:    '{{ es_lb_host_config_path }}'
+    owner:   '{{ es_lb_host_uid }}'
+    group:   'docker'
+    state:   'directory'
+    mode:    '0o750'
     recurse: true
 
 - name: Create directory for config files
   file:
-    path: '{{ es_lb_host_config_path }}/ingest-geoip'
-    state: directory
+    path:  '{{ es_lb_host_config_path }}/ingest-geoip'
     owner: '{{ es_lb_host_uid }}'
-    group: docker
+    group: 'docker'
+    mode:  '0o640'
+    state: 'directory'
 
 - name: Create config files
   template:
-    src: '{{ item }}'
-    dest: '{{ es_lb_host_config_path }}/{{ item | basename | replace(".j2", "") }}'
+    src:   '{{ item }}'
+    dest:  '{{ es_lb_host_config_path }}/{{ item | basename | replace(".j2", "") }}'
     owner: '{{ es_lb_host_uid }}'
-    group: docker
+    group: 'docker'
+    mode:  '0o640'
   register: es_lb_config
   with_fileglob:
     - templates/config/*
