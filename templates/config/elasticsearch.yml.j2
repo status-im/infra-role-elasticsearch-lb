@@ -1,14 +1,25 @@
+# Node config
 node.name: "{{ inventory_hostname }}"
-
 # act as "search load balancer", fetching data, aggregating results, etc.
 node.roles: [ ]
-
 network.host: "{{ es_lb_listen_addr }}"
 network.bind_host: "{{ es_lb_listen_addr }}"
 network.publish_host: "{{ ansible_local.wireguard.vpn_ip }}"
-
 http.port: "{{ es_lb_api_port }}"
 transport.profiles.default.port: {{ es_lb_node_port }}
+
+# Security
+xpack.security.enabled: {{ es_lb_security_enabled | to_json }}
+xpack.security.transport.ssl.enabled: {{ es_lb_security_enabled | to_json }}
+xpack.security.transport.ssl.client_authentication: required
+xpack.security.transport.ssl.verification_mode: full
+xpack.security.transport.ssl.key: "{{ es_lb_transport_key_path | replace(es_lb_transport_certs_path, "/usr/share/elasticsearch/config/certs") }}"
+xpack.security.transport.ssl.certificate: "{{ es_lb_transport_pem_path | replace(es_lb_transport_certs_path, "/usr/share/elasticsearch/config/certs") }}"
+xpack.security.transport.ssl.certificate_authorities: ["{{ es_lb_transport_ca_pem_path | replace(es_lb_transport_certs_path, "/usr/share/elasticsearch/config/certs") }}"]
+xpack.security.http.ssl.enabled: false
+xpack.security.authc.anonymous:
+  username: healthcheck
+  roles: healthcheck
 
 # Cluster
 cluster.name: "{{ es_lb_cluster_name | mandatory }}"
