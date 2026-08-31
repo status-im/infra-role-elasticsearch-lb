@@ -10,6 +10,6 @@
 - name: 'Create containers'
   community.docker.docker_compose_v2:
     project_src: '{{ es_lb_service_path }}'
-    recreate:    '{{ compose_recreate }}'
     pull:        '{{ compose_pull }}'
-    state:       '{{ es_lb_config.changed | ternary("restarted", compose_state) }}'
+    state:       '{{ compose_state }}'
+    recreate:    '{{ "always" if es_lb_config.changed else compose_recreate }}'
