@@ -33,7 +33,6 @@ es_lb_consul_tags:
   - '{{ env }}.{{ stage }}'
   - '{{ es_lb_cluster_name }}'
 
-es_lb_data_center: do-ams3
 es_lb_listen_addr: '0.0.0.0'
 
 es_lb_max_map_count: 262144
